@@ -31,3 +31,5 @@ devenv.local.nix
 .direnv
 
 .pre-commit-config.yaml
+terraform-plan-readonly-policy.json
+terraform-apply-readonly-policy.json

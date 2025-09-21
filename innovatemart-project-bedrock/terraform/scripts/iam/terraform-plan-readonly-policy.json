@@ -32,6 +32,7 @@
       "Effect": "Allow",
       "Action": [
         "secretsmanager:DescribeSecret",
+        "secretsmanager:GetResourcePolicy",
         "secretsmanager:ListSecrets",
         "secretsmanager:ListSecretVersionIds"
       ],
@@ -46,6 +47,7 @@
         "dynamodb:DescribeTable",
         "dynamodb:ListTables",
         "dynamodb:DescribeContinuousBackups",
+        "dynamodb:DescribeTimeToLive",
         "dynamodb:ListTagsOfResource"
       ],
       "Resource": [
@@ -57,7 +59,8 @@
       "Sid": "RDSReadOnly",
       "Effect": "Allow",
       "Action": [
-        "rds:Describe*"
+        "rds:Describe*",
+        "rds:ListTagsForResource"
       ],
       "Resource": "*"
     },
