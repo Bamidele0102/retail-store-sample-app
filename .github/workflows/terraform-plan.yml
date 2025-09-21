@@ -1,0 +1,72 @@
+name: Terraform Plan
+
+on:
+  push:
+    branches:
+      - feature/**
+      - feat/**
+      - fix/**
+      - chore/**
+    paths:
+      - 'innovatemart-project-bedrock/terraform/**'
+      - '.github/workflows/terraform-plan.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'innovatemart-project-bedrock/terraform/**'
+      - '.github/workflows/terraform-plan.yml'
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_REGION: ${{ vars.AWS_REGION }}
+
+jobs:
+  plan:
+    name: Terraform plan (sandbox and operators)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.9.6
+
+      - name: Terraform Init (sandbox)
+        working-directory: innovatemart-project-bedrock/terraform/envs/sandbox
+        run: terraform init -input=false
+
+      - name: Terraform Plan (sandbox)
+        working-directory: innovatemart-project-bedrock/terraform/envs/sandbox
+        run: terraform plan -input=false -out=tfplan
+
+      - name: Upload Plan (sandbox)
+        uses: actions/upload-artifact@v4
+        with:
+          name: tfplan-sandbox
+          path: innovatemart-project-bedrock/terraform/envs/sandbox/tfplan
+
+      - name: Terraform Init (operators)
+        working-directory: innovatemart-project-bedrock/terraform/envs/operators
+        run: terraform init -input=false
+
+      - name: Terraform Plan (operators)
+        working-directory: innovatemart-project-bedrock/terraform/envs/operators
+        run: terraform plan -input=false -out=tfplan
+
+      - name: Upload Plan (operators)
+        uses: actions/upload-artifact@v4
+        with:
+          name: tfplan-operators
+          path: innovatemart-project-bedrock/terraform/envs/operators/tfplan

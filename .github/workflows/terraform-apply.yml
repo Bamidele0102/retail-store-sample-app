@@ -1,0 +1,55 @@
+name: Terraform Apply
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'innovatemart-project-bedrock/terraform/**'
+      - '.github/workflows/terraform-apply.yml'
+
+concurrency:
+  group: terraform-apply
+  cancel-in-progress: false
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_REGION: ${{ vars.AWS_REGION }}
+
+jobs:
+  apply:
+    name: Terraform apply (sandbox and operators)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.9.6
+
+      - name: Terraform Init (sandbox)
+        working-directory: innovatemart-project-bedrock/terraform/envs/sandbox
+        run: terraform init -input=false
+
+      - name: Terraform Apply (sandbox)
+        working-directory: innovatemart-project-bedrock/terraform/envs/sandbox
+        run: terraform apply -input=false -auto-approve
+
+      - name: Terraform Init (operators)
+        working-directory: innovatemart-project-bedrock/terraform/envs/operators
+        run: terraform init -input=false
+
+      - name: Terraform Apply (operators)
+        working-directory: innovatemart-project-bedrock/terraform/envs/operators
+        run: terraform apply -input=false -auto-approve
