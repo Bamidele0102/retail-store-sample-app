@@ -31,3 +31,6 @@ devenv.local.nix
 .direnv
 
 .pre-commit-config.yaml
+
+# AWS IAM Policies
+# innovatemart-project-bedrock/terraform/scripts/iam/*.json
