@@ -99,11 +99,14 @@
         },
         {
             "Sid": "ACMListTagsForCertificate",
-            "Effect": "Allow",
+              "Effect": "Allow",
             "Action": [
+                "acm:ListCertificates",
+                "acm:DescribeCertificate",
+                "acm:GetCertificate",
                 "acm:ListTagsForCertificate"
             ],
-            "Resource": "arn:aws:acm:us-east-1:474422890464:certificate/*"
+            "Resource": "*"
         },
         {
             "Sid": "Route53ReadOnly",
