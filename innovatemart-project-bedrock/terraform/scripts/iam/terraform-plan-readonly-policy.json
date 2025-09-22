@@ -98,6 +98,14 @@
             "Resource": "*"
         },
         {
+            "Sid": "ACMListTagsForCertificate",
+            "Effect": "Allow",
+            "Action": [
+                "acm:ListTagsForCertificate"
+            ],
+            "Resource": "arn:aws:acm:us-east-1:474422890464:certificate/*"
+        },
+        {
             "Sid": "Route53ReadOnly",
             "Effect": "Allow",
             "Action": [
@@ -111,7 +119,8 @@
             "Effect": "Allow",
             "Action": [
                 "iam:TagUser",
-                "iam:UntagUser"
+                "iam:UntagUser",
+                "iam:ListUserTags"
             ],
             "Resource": "arn:aws:iam::474422890464:user/*"
         }
