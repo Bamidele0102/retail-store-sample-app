@@ -1,6 +1,6 @@
 # GitHub Actions Terraform Plan IAM Policy
 
-This folder contains a least-privilege IAM policy that lets the GitHub Actions OIDC role run `terraform plan` successfully, including reading Secrets Manager values used in the plan.
+This folder contains a least-privilege IAM policy that lets the GitHub Actions OIDC role run `terraform plan` successfully, including reading Secrets Manager values used in the plan...
 
 ## Files
 
