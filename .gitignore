@@ -31,5 +31,6 @@ devenv.local.nix
 .direnv
 
 .pre-commit-config.yaml
-terraform-plan-readonly-policy.json
-terraform-apply-readonly-policy.json
+
+# AWS IAM Policies
+# innovatemart-project-bedrock/terraform/scripts/iam/*.json
