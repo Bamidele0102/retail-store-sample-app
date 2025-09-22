@@ -5,6 +5,7 @@ This folder contains a least-privilege IAM policy that lets the GitHub Actions O
 ## Files
 
 - `terraform-plan-readonly-policy.json` – Grants read-only access to infrastructure metadata and Secrets Manager values under `retail/*` in `us-east-1`.
+  Also allows tagging operations on the specific developer IAM user `innovatemart-dev-ro` used by Terraform, so tag drift can be reconciled safely (`iam:TagUser`, `iam:UntagUser`, `iam:ListUserTags`).
 
 ## How to attach to your OIDC role
 
@@ -43,6 +44,24 @@ echo "Attached $POLICY_ARN to $ROLE_ARN"
 3. Confirm the trust policy on the role allows your repo and branches/PRs.
 
 4. Re-run the failing plan/apply workflow.
+
+### Updating the policy after edits
+If you change `terraform-plan-readonly-policy.json`, create a new policy version and set it as default so GitHub Actions sees the update immediately:
+
+```bash
+POLICY_NAME=InnovateMartTerraformPlanReadOnly
+POLICY_ARN=$(aws iam list-policies --scope Local \
+  --query "Policies[?PolicyName=='${POLICY_NAME}'].Arn | [0]" \
+  --output text)
+
+aws iam create-policy-version \
+  --policy-arn "$POLICY_ARN" \
+  --policy-document file://innovatemart-project-bedrock/terraform/scripts/iam/terraform-plan-readonly-policy.json \
+  --set-as-default
+
+aws iam get-policy --policy-arn "$POLICY_ARN" \
+  --query 'Policy.DefaultVersionId' --output text
+```
 
 ## Notes
 
@@ -91,6 +110,8 @@ aws iam simulate-principal-policy \
   --query 'EvaluationResults[].{Action:EvalActionName,Resource:EvalResourceName,Decision:EvalDecision}' \
   --output table
 ```
+
+Tip: If you see AccessDenied for `iam:UntagUser` on `innovatemart-dev-ro`, ensure your policy includes the `AllowManageTagsForDevReadOnlyUser` statement with `iam:TagUser`, `iam:UntagUser`, and `iam:ListUserTags` on the ARN `arn:aws:iam::<account_id>:user/innovatemart-dev-ro`.
 
 ### "Secret marked for deletion"
 If `get-resource-policy` returns `InvalidRequestException: ... marked for deletion` for `retail/catalog` (or similar), that’s an older base-name secret scheduled for deletion. Terraform often manages suffixed secrets (e.g., `retail/catalog-XYZ123`). Either let the deletion complete or restore the old secret if you need the base name:
