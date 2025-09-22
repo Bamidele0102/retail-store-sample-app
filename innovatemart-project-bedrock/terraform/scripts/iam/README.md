@@ -99,4 +99,5 @@ If `get-resource-policy` returns `InvalidRequestException: ... marked for deleti
 aws secretsmanager restore-secret --secret-id retail/catalog
 aws secretsmanager restore-secret --secret-id retail/orders
 aws secretsmanager restore-secret --secret-id retail/carts
+
 ```
