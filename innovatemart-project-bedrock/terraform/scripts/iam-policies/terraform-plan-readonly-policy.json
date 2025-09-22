@@ -38,9 +38,9 @@
                 "secretsmanager:GetSecretValue"
             ],
             "Resource": [
-                "arn:aws:secretsmanager:us-east-1:474422890464:secret:retail/catalog-*",
-                "arn:aws:secretsmanager:us-east-1:474422890464:secret:retail/orders-*",
-                "arn:aws:secretsmanager:us-east-1:474422890464:secret:retail/carts-*"
+                "arn:aws:secretsmanager:us-east-1:123456789101:secret:retail/catalog-*",
+                "arn:aws:secretsmanager:us-east-1:123456789101:secret:retail/orders-*",
+                "arn:aws:secretsmanager:us-east-1:123456789101:secret:retail/carts-*"
             ]
         },
         {
@@ -125,7 +125,7 @@
                 "iam:UntagUser",
                 "iam:ListUserTags"
             ],
-            "Resource": "arn:aws:iam::474422890464:user/*"
+            "Resource": "arn:aws:iam::123456789101:user/*"
         }
     ]
 }

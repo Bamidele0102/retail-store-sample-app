@@ -2,6 +2,8 @@
 
 Installs cluster add-ons (ALB Controller, ExternalDNS, External Secrets) and configures IRSA roles. Uses an S3 backend for state.
 
+For CI/CD pipeline details (Plan/Apply and deploy order), see `../../docs/CI_CD.md`.
+
 ## Backend (S3) configuration
 
 Default backend is defined in `backend.tf`:
