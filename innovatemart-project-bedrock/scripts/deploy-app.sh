@@ -67,4 +67,7 @@ echo "Deploying the retail store application..."
 
 kubectl apply -k "${REPO_ROOT}/k8s/overlays/sandbox"
 
+# Scale down AWS Load Balancer Controller to avoid pod scheduling issues during deployment
+kubectl -n kube-system scale deployment/aws-load-balancer-controller --replicas=0
+
 echo "Application deployed successfully!"
