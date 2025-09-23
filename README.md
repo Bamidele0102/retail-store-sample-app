@@ -10,6 +10,10 @@ This is the project structure for this project.
 ├── CONTRIBUTING.md
 ├── LICENSE
 ├── README.md
+├── assets
+│   ├── ui-home.png
+│   ├── demo.mp4
+│   └── .gitkeep
 └── innovatemart-project-bedrock
   ├── README.md
   ├── REPROVISION.md
@@ -130,6 +134,14 @@ This is the project structure for this project.
       ├── terraform.tfstate.backup
       └── variables.tf
 ```
+## UI Home
+
+![UI Home](assets/ui-home.png)
+
+## Demo
+
+- [Demo video (MP4)](assets/demo.mp4)
+
 ## Architecture
 The architecture consists of several microservices, each responsible for different functionalities of the retail store application. The key components include:
 
