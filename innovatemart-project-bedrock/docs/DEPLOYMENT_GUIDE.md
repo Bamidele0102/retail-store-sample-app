@@ -14,8 +14,8 @@ Before deploying the application, ensure you have the following:
 ### 1. Clone the Repository
 Clone the InnovateMart project repository to your local machine:
 ```bash
-git clone <repository-url>
-cd innovatemart-project-bedrock
+git clone https://github.com/Bamidele0102/retail-store-sample-app.git
+cd retail-store-sample-app/innovatemart-project-bedrock
 ```
 
 ### 2. Configure Terraform Variables
