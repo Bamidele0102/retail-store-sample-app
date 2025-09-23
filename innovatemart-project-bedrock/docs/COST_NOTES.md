@@ -1,5 +1,7 @@
 # COST MANAGEMENT AND OPTIMIZATION NOTES
 
+Docs index: [Architecture](./ARCHITECTURE.md) | [Deployment Guide](./DEPLOYMENT_GUIDE.md) | [Deployment Architecture Guide](./Deployment_Architecture_Guide.md) | [CI/CD](./CI_CD.md) | [Cost Notes](./COST_NOTES.md) | [Back to root README](../../README.md)
+
 ## Overview
 This document outlines the cost considerations and optimization strategies for deploying the InnovateMart retail-store-sample-app on AWS using EKS. The goal is to ensure that the infrastructure is cost-effective while meeting the application's performance and scalability requirements.
 
@@ -36,3 +38,5 @@ This document outlines the cost considerations and optimization strategies for d
 
 ## Conclusion
 By carefully selecting instance types, utilizing managed services efficiently, and continuously monitoring costs, InnovateMart can maintain a cost-effective cloud infrastructure while supporting the retail-store-sample-app's growth and scalability needs.
+
+Back: [Architecture](./ARCHITECTURE.md) · [Deployment Guide](./DEPLOYMENT_GUIDE.md) · [CI/CD](./CI_CD.md)

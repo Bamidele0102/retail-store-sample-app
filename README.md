@@ -19,6 +19,7 @@ This is the project structure for this project.
   ├── REPROVISION.md
   ├── docs
   │   ├── ARCHITECTURE.md
+  │   ├── CI_CD.md
   │   ├── COST_NOTES.md
   │   ├── DEPLOYMENT_GUIDE.md
   │   └── Deployment_Architecture_Guide.md
@@ -140,7 +141,10 @@ This is the project structure for this project.
 
 ## Demo
 
-- [Demo video (MP4)](assets/demo.mp4)
+[![Watch the demo on YouTube](https://img.youtube.com/vi/ZHF9U0PBFJc/hqdefault.jpg)](https://youtu.be/ZHF9U0PBFJc)
+
+- [InnovateMart Retail Store (YouTube)](https://youtu.be/ZHF9U0PBFJc)
+<!--![Demo](assets/demo.gif)-->
 
 ## Architecture
 The architecture consists of several microservices, each responsible for different functionalities of the retail store application. The key components include:
@@ -196,15 +200,18 @@ To deploy the application, follow these steps:
 
 ## Accessing the Application
 Once the deployment is complete, you can access the retail store application through the Application Load Balancer (ALB) URL provided in the Terraform outputs.
+If ALB creation is restricted in your account, use the NodePort fallback documented here: [Deployment Architecture Guide](innovatemart-project-bedrock/docs/Deployment_Architecture_Guide.md).
 
 ## Developer Access
 A read-only IAM user has been created for the development team. Use the provided credentials to access the EKS cluster and view logs, pods, and services without making changes.
 
 ## Documentation
-For detailed architecture, deployment steps, and cost management notes, refer to the documents under `innovatemart-project-bedrock/docs/`:
-- [ARCHITECTURE.md](innovatemart-project-bedrock/docs/ARCHITECTURE.md)
-- [DEPLOYMENT_GUIDE.md](innovatemart-project-bedrock/docs/DEPLOYMENT_GUIDE.md)
-- [COST_NOTES.md](innovatemart-project-bedrock/docs/COST_NOTES.md)
+For detailed architecture, deployment steps, CI/CD, and cost management notes, see:
+- [Architecture](innovatemart-project-bedrock/docs/ARCHITECTURE.md)
+- [Deployment Guide](innovatemart-project-bedrock/docs/DEPLOYMENT_GUIDE.md)
+- [Deployment Architecture Guide](innovatemart-project-bedrock/docs/Deployment_Architecture_Guide.md)
+- [CI/CD](innovatemart-project-bedrock/docs/CI_CD.md)
+- [Cost Notes](innovatemart-project-bedrock/docs/COST_NOTES.md)
 
 ## Conclusion
 This project lays the foundation for InnovateMart's cloud infrastructure, enabling the team to deliver a world-class shopping experience to customers. Your contributions as a Cloud DevOps Engineer are crucial for the success of Project Bedrock.

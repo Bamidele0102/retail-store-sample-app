@@ -1,5 +1,7 @@
 # CI/CD: GitHub Actions + AWS OIDC
 
+Docs index: [Architecture](./ARCHITECTURE.md) | [Deployment Guide](./DEPLOYMENT_GUIDE.md) | [Deployment Architecture Guide](./Deployment_Architecture_Guide.md) | [CI/CD](./CI_CD.md) | [Cost Notes](./COST_NOTES.md) | [Back to root README](../../README.md)
+
 This document explains how the pipelines work, what they require, and how to troubleshoot them.
 
 ## Overview
@@ -20,7 +22,7 @@ Workflows:
    - Sandbox (VPC, EKS, RDS, DynamoDB, IAM) runs first.
    - Operators (ALB controller, ExternalDNS, ESO, IRSA) runs second.
 3. Deploy
-   - Applies Kubernetes manifests with `innovatemart-project-bedrock/scripts/deploy-app.sh`.
+  - Applies Kubernetes manifests with `../scripts/deploy-app.sh`.
    - The script generates kubeconfig, applies ExternalSecrets, then the app overlay (`k8s/overlays/sandbox`).
 
 ## Required configuration
@@ -30,7 +32,7 @@ Workflows:
   - Actions variable `AWS_REGION`: e.g., `us-east-1`.
 - AWS IAM:
   - OIDC trust on the role to allow GitHub to assume it.
-  - Attach the least-privilege policy: `terraform/scripts/iam/terraform-plan-readonly-policy.json`.
+  - Attach the least-privilege policy: `../terraform/scripts/iam/terraform-plan-readonly-policy.json`.
   - After policy edits, create a new policy version and set it as default.
 
 ## First-run EKS access
@@ -40,7 +42,7 @@ The IAM role used by Actions must have access to your EKS cluster, otherwise the
 Run once (from an admin session):
 
 ```bash
-innovatemart-project-bedrock/terraform/scripts/create-eks-access-entry.sh \
+../terraform/scripts/create-eks-access-entry.sh \
   -c innovatemart-sandbox \
   -r us-east-1 \
   -a arn:aws:iam::<account-id>:role/innovate-mart-github-oidc
@@ -55,7 +57,7 @@ This associates `AmazonEKSClusterAdminPolicy` at cluster scope to the role.
 - ACM `ListTagsForCertificate` for certificate tag reads.
 - IAM Tag/Untag/ListUserTags for the specific dev read-only user (to reconcile tag drift), or ignore tags via Terraform lifecycle if preferred.
 
-File: `innovatemart-project-bedrock/terraform/scripts/iam/terraform-plan-readonly-policy.json`
+File: `../terraform/scripts/iam/terraform-plan-readonly-policy.json`
 
 ## Troubleshooting
 
@@ -81,3 +83,5 @@ File: `innovatemart-project-bedrock/terraform/scripts/iam/terraform-plan-readonl
 - No long-lived AWS keys are stored in GitHub.
 - The assumed role should be scoped to the minimum required permissions.
 - Consider using AWS IAM Access Analyzer policy validation and the IAM policy simulator when tightening permissions.
+
+See also: [Deployment Guide](./DEPLOYMENT_GUIDE.md) · [Deployment Architecture Guide](./Deployment_Architecture_Guide.md) · [Cost Notes](./COST_NOTES.md)

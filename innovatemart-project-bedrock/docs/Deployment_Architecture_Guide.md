@@ -1,5 +1,7 @@
 # Deployment & Architecture Guide: InnovateMart Retail Store
 
+Docs index: [Architecture](./ARCHITECTURE.md) | [Deployment Guide](./DEPLOYMENT_GUIDE.md) | [Deployment Architecture Guide](./Deployment_Architecture_Guide.md) | [CI/CD](./CI_CD.md) | [Cost Notes](./COST_NOTES.md) | [Back to root README](../../README.md)
+
 This short guide covers the architecture, how to access the running app, and how a read-only developer can connect to the EKS cluster. It also summarizes the bonus objectives implemented.
 
 ## 1) Architecture Overview
@@ -58,7 +60,7 @@ Choose the option that matches your environment.
 Note on our environment:
 - ALB provisioning was blocked at the AWS account level (service-linked role/ALB creation not permitted). As a result, Ingress with ALB could not be used.
 - We implemented a NodePort Service (`ui-nodeport`) instead of an Ingress. The service exposes port 80 mapped to container port 8080, with a fixed nodePort `30080`:
-  - File: `k8s/base/services/ui-nodeport.yaml`
+  - File: `../k8s/base/services/ui-nodeport.yaml`
   - Access example: `http://<any-node-public-ip>:30080/`
   - This allowed external access without depending on ALB while keeping the rest of the stack unchanged.
 
@@ -164,4 +166,6 @@ Notes:
 - ESO not syncing: confirm EKS OIDC provider exists and the ESO IRSA role has Secrets Manager read permissions.
 
 ---
-This guide is intentionally concise (≤2 pages). See `docs/ARCHITECTURE.md` and `docs/DEPLOYMENT_GUIDE.md` for deeper details.
+This guide is intentionally concise (≤2 pages). See [Architecture](./ARCHITECTURE.md) and [Deployment Guide](./DEPLOYMENT_GUIDE.md) for deeper details.
+
+Next: [CI/CD](./CI_CD.md)

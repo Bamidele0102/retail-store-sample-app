@@ -1,5 +1,7 @@
 # Deployment Guide for InnovateMart Retail Store Application
 
+Docs index: [Architecture](./ARCHITECTURE.md) | [Deployment Guide](./DEPLOYMENT_GUIDE.md) | [Deployment Architecture Guide](./Deployment_Architecture_Guide.md) | [CI/CD](./CI_CD.md) | [Cost Notes](./COST_NOTES.md) | [Back to root README](../../README.md)
+
 ## Prerequisites
 Before deploying the application, ensure you have the following:
 
@@ -43,13 +45,13 @@ Confirm the action when prompted.
 ### 6. Configure kubectl
 After the EKS cluster is created, configure kubectl to use the new cluster:
 ```bash
-./terraform/scripts/generate-kubeconfig.sh
+../../terraform/scripts/generate-kubeconfig.sh
 ```
 
 ### 7. Deploy the Application
 Deploy the retail store application to the EKS cluster:
 ```bash
-./scripts/deploy-app.sh
+../scripts/deploy-app.sh
 ```
 
 ### 8. Access the Application
@@ -66,4 +68,9 @@ To provide the development team with read-only access to the EKS cluster:
 2. Provide the IAM user credentials and instructions to configure their AWS CLI.
 
 ## Conclusion
-You have successfully deployed the InnovateMart Retail Store Application on AWS EKS. For any issues or further configurations, refer to the documentation in the `docs` directory or reach out to the DevOps team.
+You have successfully deployed the InnovateMart Retail Store Application on AWS EKS.
+
+Next:
+- Review [Deployment Architecture Guide](./Deployment_Architecture_Guide.md) for environment-specific access patterns (ALB vs NodePort).
+- See [CI/CD](./CI_CD.md) to understand how changes are deployed via GitHub Actions.
+- Consult [Cost Notes](./COST_NOTES.md) to keep the sandbox inexpensive.
