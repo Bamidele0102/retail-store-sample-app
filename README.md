@@ -5,131 +5,131 @@ InnovateMart's Project Bedrock is an initiative to deploy a modern microservices
 
 ## Project Structure
 This is the project structure for this project.
-
+```text
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
 ├── LICENSE
 ├── README.md
 └── innovatemart-project-bedrock
-    ├── README.md
-    ├── REPROVISION.md
-    ├── docs
-    │   ├── ARCHITECTURE.md
-    │   ├── COST_NOTES.md
-    │   ├── DEPLOYMENT_GUIDE.md
-    │   └── Deployment_Architecture_Guide.md
-    ├── k8s
-    │   ├── base
-    │   │   ├── config
-    │   │   │   └── external-secrets
-    │   │   │       ├── carts-ddb-secret.yaml
-    │   │   │       ├── catalog-db-secret.yaml
-    │   │   │       └── orders-db-secret.yaml
-    │   │   ├── deployments
-    │   │   │   ├── carts.yaml
-    │   │   │   ├── catalog.yaml
-    │   │   │   ├── orders.yaml
-    │   │   │   └── ui.yaml
-    │   │   ├── kustomization.yaml
-    │   │   ├── namespaces
-    │   │   │   └── retail-store.yaml
-    │   │   ├── rbac
-    │   │   │   └── read-only-binding.yaml
-    │   │   └── services
-    │   │       ├── carts-svc.yaml
-    │   │       ├── catalog-svc.yaml
-    │   │       ├── orders-svc.yaml
-    │   │       ├── ui-nodeport.yaml
-    │   │       └── ui-svc.yaml
+  ├── README.md
+  ├── REPROVISION.md
+  ├── docs
+  │   ├── ARCHITECTURE.md
+  │   ├── COST_NOTES.md
+  │   ├── DEPLOYMENT_GUIDE.md
+  │   └── Deployment_Architecture_Guide.md
+  ├── k8s
+  │   ├── base
+  │   │   ├── config
+  │   │   │   └── external-secrets
+  │   │   │       ├── carts-ddb-secret.yaml
+  │   │   │       ├── catalog-db-secret.yaml
+  │   │   │       └── orders-db-secret.yaml
+  │   │   ├── deployments
+  │   │   │   ├── carts.yaml
+  │   │   │   ├── catalog.yaml
+  │   │   │   ├── orders.yaml
+  │   │   │   └── ui.yaml
+  │   │   ├── kustomization.yaml
+  │   │   ├── namespaces
+  │   │   │   └── retail-store.yaml
+  │   │   ├── rbac
+  │   │   │   └── read-only-binding.yaml
+  │   │   └── services
+  │   │       ├── carts-svc.yaml
+  │   │       ├── catalog-svc.yaml
+  │   │       ├── orders-svc.yaml
+  │   │       ├── ui-nodeport.yaml
+  │   │       └── ui-svc.yaml
+  │   ├── operators
+  │   │   └── external-secrets
+  │   │       └── clustersecretstore.yaml
+  │   └── overlays
+  │       └── sandbox
+  │           └── kustomization.yaml
+  ├── scripts
+  │   ├── deploy-app.sh
+  │   └── deploy-operators.sh
+  └── terraform
+    ├── envs
     │   ├── operators
-    │   │   └── external-secrets
-    │   │       └── clustersecretstore.yaml
-    │   └── overlays
-    │       └── sandbox
-    │           └── kustomization.yaml
+    │   │   ├── README.md
+    │   │   ├── backend.tf
+    │   │   ├── main.tf
+    │   │   ├── providers.tf
+    │   │   ├── remote_state.tf
+    │   │   ├── terraform.tfvars
+    │   │   ├── ui_ingress.tf
+    │   │   ├── variables.tf
+    │   │   └── versions.tf
+    │   └── sandbox
+    │       ├── README.md
+    │       ├── backend.tf
+    │       ├── main.tf
+    │       ├── outputs.tf
+    │       ├── providers.tf
+    │       ├── secrets.tf
+    │       ├── terraform.tfvars
+    │       ├── variables.tf
+    │       └── versions.tf
+    ├── modules
+    │   ├── acm
+    │   │   ├── cert.tf
+    │   │   ├── outputs.tf
+    │   │   └── variables.tf
+    │   ├── alb-iam
+    │   │   ├── main.tf
+    │   │   └── variables.tf
+    │   ├── dynamodb
+    │   │   ├── main.tf
+    │   │   ├── outputs.tf
+    │   │   └── variables.tf
+    │   ├── eks
+    │   │   ├── cluster.tf
+    │   │   ├── iam.tf
+    │   │   ├── nodegroups.tf
+    │   │   ├── outputs.tf
+    │   │   └── variables.tf
+    │   ├── iam
+    │   │   ├── dev-readonly-user.tf
+    │   │   ├── eks-auth.tf
+    │   │   ├── outputs.tf
+    │   │   ├── policies.tf
+    │   │   └── variables.tf
+    │   ├── rds-mysql
+    │   │   ├── main.tf
+    │   │   ├── outputs.tf
+    │   │   └── variables.tf
+    │   ├── rds-postgres
+    │   │   ├── main.tf
+    │   │   ├── outputs.tf
+    │   │   └── variables.tf
+    │   ├── route53
+    │   │   ├── outputs.tf
+    │   │   ├── records.tf
+    │   │   ├── variables.tf
+    │   │   └── zone.tf
+    │   └── vpc
+    │       ├── main.tf
+    │       ├── outputs.tf
+    │       └── variables.tf
     ├── scripts
-    │   ├── deploy-app.sh
-    │   └── deploy-operators.sh
-    └── terraform
-        ├── envs
-        │   ├── operators
-        │   │   ├── README.md
-        │   │   ├── backend.tf
-        │   │   ├── main.tf
-        │   │   ├── providers.tf
-        │   │   ├── remote_state.tf
-        │   │   ├── terraform.tfvars
-        │   │   ├── ui_ingress.tf
-        │   │   ├── variables.tf
-        │   │   └── versions.tf
-        │   └── sandbox
-        │       ├── README.md
-        │       ├── backend.tf
-        │       ├── main.tf
-        │       ├── outputs.tf
-        │       ├── providers.tf
-        │       ├── secrets.tf
-        │       ├── terraform.tfvars
-        │       ├── variables.tf
-        │       └── versions.tf
-        ├── modules
-        │   ├── acm
-        │   │   ├── cert.tf
-        │   │   ├── outputs.tf
-        │   │   └── variables.tf
-        │   ├── alb-iam
-        │   │   ├── main.tf
-        │   │   └── variables.tf
-        │   ├── dynamodb
-        │   │   ├── main.tf
-        │   │   ├── outputs.tf
-        │   │   └── variables.tf
-        │   ├── eks
-        │   │   ├── cluster.tf
-        │   │   ├── iam.tf
-        │   │   ├── nodegroups.tf
-        │   │   ├── outputs.tf
-        │   │   └── variables.tf
-        │   ├── iam
-        │   │   ├── dev-readonly-user.tf
-        │   │   ├── eks-auth.tf
-        │   │   ├── outputs.tf
-        │   │   ├── policies.tf
-        │   │   └── variables.tf
-        │   ├── rds-mysql
-        │   │   ├── main.tf
-        │   │   ├── outputs.tf
-        │   │   └── variables.tf
-        │   ├── rds-postgres
-        │   │   ├── main.tf
-        │   │   ├── outputs.tf
-        │   │   └── variables.tf
-        │   ├── route53
-        │   │   ├── outputs.tf
-        │   │   ├── records.tf
-        │   │   ├── variables.tf
-        │   │   └── zone.tf
-        │   └── vpc
-        │       ├── main.tf
-        │       ├── outputs.tf
-        │       └── variables.tf
-        ├── scripts
-        │   ├── README.md
-        │   ├── configure-aws-auth.sh
-        │   ├── create-eks-access-entry.sh
-        │   ├── destroy-all.sh
-        │   ├── generate-kubeconfig.sh
-        │   ├── iam
-        │   │   ├── README.md
-        │   │   └── terraform-plan-readonly-policy.json
-        │   └── install-aws-load-balancer-controller.sh
-        └── state-bootstrap
-            ├── README.md
-            ├── main.tf
-            ├── terraform.tfstate
-            ├── terraform.tfstate.backup
-            └── variables.tf
-
+    │   ├── README.md
+    │   ├── configure-aws-auth.sh
+    │   ├── create-eks-access-entry.sh
+    │   ├── destroy-all.sh
+    │   ├── generate-kubeconfig.sh
+    │   ├── iam
+    │   │   ├── README.md
+    │   │   └── terraform-plan-readonly-policy.json
+    │   └── install-aws-load-balancer-controller.sh
+    └── state-bootstrap
+      ├── README.md
+      ├── main.tf
+      ├── terraform.tfstate
+      ├── terraform.tfstate.backup
+      └── variables.tf
+```
 ## Architecture
 The architecture consists of several microservices, each responsible for different functionalities of the retail store application. The key components include:
 
@@ -148,10 +148,10 @@ To deploy the application, follow these steps:
    - Configure your AWS credentials.
 
 2. **Clone the Repository**:
-   ```bash
-   git clone <repository-url>
-   cd innovatemart-project-bedrock
-   ```
+  ```bash
+  git clone https://github.com/Bamidele0102/retail-store-sample-app.git
+  cd retail-store-sample-app/innovatemart-project-bedrock
+  ```
 
 3. **Terraform Setup**:
    - Navigate to the Terraform environment:
@@ -172,13 +172,14 @@ To deploy the application, follow these steps:
      ```
 
 4. **Deploy the Application**:
-   - Navigate to the scripts directory:
+   Run the deployment script (pick one based on your current directory):
+   - From the repo root:
      ```bash
-     cd ../../scripts
+     ./innovatemart-project-bedrock/scripts/deploy-app.sh
      ```
-   - Run the deployment script:
+   - From inside `innovatemart-project-bedrock/`:
      ```bash
-     ./deploy-app.sh
+     ./scripts/deploy-app.sh
      ```
 
 ## Accessing the Application
@@ -188,10 +189,10 @@ Once the deployment is complete, you can access the retail store application thr
 A read-only IAM user has been created for the development team. Use the provided credentials to access the EKS cluster and view logs, pods, and services without making changes.
 
 ## Documentation
-For detailed architecture, deployment steps, and cost management notes, refer to the documents in the `docs` directory:
-- [ARCHITECTURE.md](docs/ARCHITECTURE.md)
-- [DEPLOYMENT_GUIDE.md](docs/DEPLOYMENT_GUIDE.md)
-- [COST_NOTES.md](docs/COST_NOTES.md)
+For detailed architecture, deployment steps, and cost management notes, refer to the documents under `innovatemart-project-bedrock/docs/`:
+- [ARCHITECTURE.md](innovatemart-project-bedrock/docs/ARCHITECTURE.md)
+- [DEPLOYMENT_GUIDE.md](innovatemart-project-bedrock/docs/DEPLOYMENT_GUIDE.md)
+- [COST_NOTES.md](innovatemart-project-bedrock/docs/COST_NOTES.md)
 
 ## Conclusion
 This project lays the foundation for InnovateMart's cloud infrastructure, enabling the team to deliver a world-class shopping experience to customers. Your contributions as a Cloud DevOps Engineer are crucial for the success of Project Bedrock.
